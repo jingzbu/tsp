@@ -113,8 +113,8 @@ observations is drawn from a known \textit{Probability Law (PL)} (i.e.,
 \textit{probability distribution}) defined on a finite alphabet
 \cite{TIT13}. Among numerous such tests, the one proposed by Hoeffding
 \cite{hoeffding1965} has been well known for decades. When implementing
-the Hoeffding test, one must set a threshold $\eta$, which, in the
-existing literature, is typically estimated by using Sanov's theorem
+the Hoeffding test in the context of SAD, one must set appropriately a threshold $\eta$ so as to ensure a low false alarm rate while maintaining a reasonably high detection rate. In the
+existing literature, this threshold is typically estimated by using Sanov's theorem
 \cite{dembo1998large} -- a large deviations result. Note that such an
 estimator (let us denote it by $\eta^{\text{sv}}$) is valid only in the
 asymptotic sense. In practice, however, only a finite number of
@@ -138,9 +138,9 @@ Our contributions in this paper include:
   estimator over earlier work through numerical experiments. 
 
 \item We apply the Hoeffding test with our threshold estimator to two
-  types of systems for the purpose of anomaly detection: $(\rmnum{1})$ a
+  types of systems for the purpose of anomaly detection: (\rmnum{1}) a
   communication network with flow data simulated by the software package
-  SADIT \cite{SADIT}; and $(\rmnum{2})$ a real transportation network with jam
+  SADIT \cite{SADIT}; and (\rmnum{2}) a real transportation network with jam
   data reported by Waze, a smartphone GPS navigation application. To the
   best of our knowledge, the latter is a novel application of anomaly
   detection.
@@ -188,8 +188,8 @@ and the other assumes observations of system activity follow a
 finite-state Markov chain. Both methods are extended in
 \cite{robust-anomaly-tcns} to the case where system activity is
 time-varying. When implementing the Hoeffding test, however, both
-\cite{pas-sma-ton-09} and \cite{robust-anomaly-tcns} use the estimator
-$\eta^{\text{sv}}$ to calculate the detection threshold.
+\cite{pas-sma-ton-09} and \cite{robust-anomaly-tcns} use the large deviations estimator
+$\eta^{\text{sv}}$ to calculate the detection threshold in a finite sample-size setting, thus controlling the false alarm rate not well enough.
  
 To derive a more accurate threshold estimator,
 \cite{TIT13,unnikrishnan2011universal} use a procedure commonly used by
@@ -269,7 +269,7 @@ the Markov chain $\bZ = \{ {{Z_l};~l = 1,2, \ldots }\}$ is drawn from PL
 $\bpi$.
 
 To quantify the distance between the empirical PL $\boldsymbol{\Gamma} _n$ and
-the actual PL ${\bpi}$, we define the \textit{relative entropy} (or
+the actual PL ${\bpi}$, one considers the \textit{relative entropy} (or
 \textit{divergence}) between ${\boldsymbol{\Gamma} _n}$ and ${{\bpi} }$: 
 \begin{equation}
   D( {\left. \boldsymbol{\Gamma} _n \right\| \bpi }) = 
@@ -1211,7 +1211,7 @@ parameters $n$, $\beta$, $N$, and $k \in \{1, \ldots, K\}$.}
 
 
 \subsection{ROC Analysis for the Hoeffding Test with 
-Different Threshold Settings} \label{sec:ROCHoeff}
+Different Threshold Estimators} \label{sec:ROCHoeff}
 
 In this subsection, for simplicity and economy of space, we again only consider the ordinary (and not the robust) Hoeffding test. We note here that similar results can be derived for the robust Hoeffding test. The numerical experiments are conducted using the software package ROM \cite{ROCHM}.
 
@@ -1854,7 +1854,7 @@ cameras) and intervene.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions} \label{sec:con}
+\section{Conclusions and Future Work} \label{sec:con}
 
 We have established weak convergence results for the relative entropy in
 the Hoeffding test under Markovian assumptions, which enables us to
@@ -1866,6 +1866,8 @@ anomaly detection. The application scenarios involve not only simulated
 communication networks, but also real transportation networks. Our work
 contributes to enhancing cyber security and helping build smarter
 cities.
+
+As for future work, it is of interest to establish theoretical comparison results concerning the tightness of the threshold estimators. The challenge in this direction arises from associating the finite sample-size setting with the asymptotic properties of the Central Limit Theorem and the large deviations results (Sanov's theorem). It is also of interest to conduct rigorous analysis  relating the computation time of the proposed estimation approach to its accuracy. Also, it is possible to consider broader applications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendices
@@ -2018,10 +2020,10 @@ paper.
 
 \bibliographystyle{IEEEtran}
 
-\bibliography{/home/yannisp/Private/bib/abbrev,/home/yannisp/Private/bib/IEEEabrv,/home/yannisp/Private/bib/communications,/home/yannisp/Private/bib/my,/home/yannisp/Private/bib/optimization,/home/yannisp/Private/bib/stochastics,/home/yannisp/Private/bib/various,/home/yannisp/Private/bib/bio,/home/yannisp/Private/bib/statistics,/home/yannisp/Private/bib/control,bib}
+%\bibliography{/home/yannisp/Private/bib/abbrev,/home/yannisp/Private/bib/IEEEabrv,/home/yannisp/Private/bib/communications,/home/yannisp/Private/bib/my,/home/yannisp/Private/bib/optimization,/home/yannisp/Private/bib/stochastics,/home/yannisp/Private/bib/various,/home/yannisp/Private/bib/bio,/home/yannisp/Private/bib/statistics,/home/yannisp/Private/bib/control,bib}
 
 %\bibliography{C:/Users/Yannis/Documents/Private/bib/IEEEabrv,C:/Users/Yannis/Documents/Private/bib/abbrev,C:/Users/Yannis/Documents/Private/bib/communications,C:/Users/Yannis/Documents/Private/bib/my,C:/Users/Yannis/Documents/Private/bib/optimization,C:/Users/Yannis/Documents/Private/bib/stochastics,C:/Users/Yannis/Documents/Private/bib/control,C:/Users/Yannis/Documents/Private/bib/statistics,bib}
-%\bibliography{bib}
+\bibliography{bib}
 
 
 \end{document}
